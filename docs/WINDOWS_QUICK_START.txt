@@ -1,0 +1,57 @@
+CAPT Connection Check 0.1.1 - native Windows ARM64 development diagnostic
+
+This is a connection test, not an installable printer driver. It cannot print.
+Version 0.1 reached the printer and retrieved its identity on the user's Surface.
+This 0.1.1 build fixes rejection of that identity format and has been tested
+against the captured bytes on Linux. The updated build still needs a Surface
+test; no CAPT status exchange or physical print has been verified.
+
+On the Surface running Windows 11 ARM64:
+
+1. Extract CAPT-Connection-Check-ARM64-0.1.1.zip into a new folder.
+2. Double-click CAPT-Connection-Check.exe. No terminal or installation needed.
+3. Click "Check this app" first. This tests the worker launch and report pipe
+   without accessing any printer. Save a report if it fails.
+4. Connect and power on the LBP6000. Close any active print jobs and other
+   printer utilities. Click "Inspect USB printers".
+5. Click "Check Canon status". Confirm the report says version 0.1.1.
+   Only an identified, allow-listed Canon receives
+   the four-byte CAPT status request. No job is started and no page is sent.
+6. Click "Save report" to keep the result. Reports can contain printer serial
+   numbers and device paths; review them before sharing.
+
+Cancel stops the diagnostic worker. A 30-second watchdog requests termination
+automatically if the worker stalls. The window remains usable while Windows
+finishes releasing a stuck worker. Close the window to exit.
+
+This unsigned development build may be blocked by Windows security policy.
+It does not change that policy, request administrator rights, replace a USB
+driver, create a printer queue or install a background service. A policy block
+is a separate result to report, not evidence of printer incompatibility.
+
+Common results:
+
+- No USBPRINT interface: check cable, power and Device Manager. The app does not
+  install or change the Windows USB printer class binding.
+- Exclusive-open failure: another queue/application may own the printer, or
+  permissions may deny access. The report records the actual Windows error.
+- Unknown/malformed identity: no CAPT request is sent. Save the raw identity
+  report; an identity variant must be reviewed before changing the allow-list.
+- Multiple targets or another device check failed: disconnect unrelated USB
+  printers and inspect again so the intended device is unambiguous.
+- CAPT timeout/invalid reply: save the report. No automatic retry, reset or
+  print command is performed. A status query may require further protocol work.
+- Status exchange completed: one command/reply worked. This does not validate
+  printing, margins, spooler integration, paper handling or job cancellation.
+
+Contents:
+  CAPT-Connection-Check.exe   Native ARM64 GUI diagnostic
+  corresponding-source.zip   Complete project source and unchanged reference
+  developer-tests/           ARM64 tests (compiled here, not run on Windows)
+  third-party-notices/       Toolchain/runtime notices
+  BUILD-INFO.txt             Build provenance and DLL import audit
+  SHA256SUMS.txt             Integrity hashes (not a digital signature)
+  LICENSE, NOTICE.md         Project licensing/provenance
+
+Developer test commands and limitations are in source/docs/WINDOWS_PROBE.md
+inside corresponding-source.zip. Normal diagnostic use needs no command line.

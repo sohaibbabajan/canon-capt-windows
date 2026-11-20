@@ -1,0 +1,59 @@
+Canon LBP6000 CAPT for Windows 11 ARM64
+Version 0.3.1
+
+First test (about 5 minutes)
+
+1. Extract the entire ZIP and keep its folder. If 0.3 is already installed,
+   open CAPT-Setup.exe, choose Remove printer, then reopen Setup.
+2. Plug the printer directly into the Surface, turn it on, and load A4 plain
+   paper. Close the old USB test app and connection checker.
+3. Double-click CAPT-Setup.exe. If it opens in English, select العربية and
+   confirm the menu changes direction. Choose تثبيت الطابعة to install.
+   Approve the Windows administrator prompt.
+   If Setup reports that Microsoft Print to PDF is missing, enable it in
+   Turn Windows features on or off and run Setup again.
+4. Open Notepad, type CAPT TEST 01, then choose File > Print. Select
+   Canon LBP6000 CAPT and print one A4 copy. No Save As dialog should appear.
+5. Reopen Setup and select View last job report (عرض تقرير آخر مهمة طباعة).
+   A completed job ends with Printer completion received and Worker exit 0.
+
+Arabic and quality tests (about 10 minutes)
+
+6. Open validation/Arabic-App-Test.html in Microsoft Edge. Press Ctrl+P.
+   Choose Canon LBP6000 CAPT, A4, Portrait, one copy, and turn off Headers
+   and footers. Compare the paper with the preview. Arabic letters must be
+   joined, dots and vowel marks visible, and CAPT-2026 / USB-15 intact.
+7. Open validation/Arabic-Print-Test.pdf in Edge. Print both pages once,
+   with A4, Portrait, Actual size or 100%, and one copy. Expect pages ١ then
+   ٢, four corner marks on each sheet, a 100 mm ruler within about 1 mm,
+   and six distinct gray boxes on page 1 in order from black to white.
+8. Print the HTML page again with Landscape selected. Confirm the whole
+   page fits and its text reads correctly when you turn the sheet. If you
+   have Letter paper, select Letter in Edge and test one matching sheet.
+
+Recovery and removal (about 15 minutes)
+
+9. Unplug USB while the printer is idle and send one Notepad job labeled
+   CAPT DISCONNECT 02. View the report and confirm a USB error. Plug USB
+   back in, wait for Windows to detect it, then print a new Notepad job
+   labeled CAPT RECOVERY 03. Expect exactly the recovery sheet.
+10. With the printer idle, empty the tray. Send one job labeled CAPT PAPER 04.
+    Record the report and what happens when paper is loaded again. If the
+    job is still running, choose Cancel active USB job in Setup and wait
+    for its result. Check the output before resubmitting anything.
+11. Restart the Surface and send CAPT REBOOT 05 without opening Setup
+    first. Confirm it prints once, then use Setup to view the report.
+12. Choose Remove printer in Setup and check Settings > Bluetooth & devices
+    > Printers & scanners. Canon LBP6000 CAPT should disappear. Check that
+    Microsoft Print to PDF remains. Reinstall and print one final sheet.
+
+If a step fails
+
+Stop at that step. Copy the setup error or last job report with Ctrl+C
+while its dialog is active. Send the step number, what Windows showed, and
+what came out of the printer. Windows can clear a job from its queue after
+handoff. The CAPT report shows physical completion.
+After a failed or canceled job, check for partial output before retrying.
+
+This installer is unsigned. The accompanying START-HERE-AR.txt covers the
+same checks in Arabic.

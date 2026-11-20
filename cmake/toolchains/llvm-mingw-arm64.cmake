@@ -1,0 +1,16 @@
+# Native Windows ARM64 output from an Ubuntu llvm-mingw toolchain.
+# Pass -DLLVM_MINGW_ROOT=/absolute/path/to/the/extracted/toolchain.
+set(CMAKE_SYSTEM_NAME Windows)
+set(CMAKE_SYSTEM_PROCESSOR ARM64)
+if(NOT LLVM_MINGW_ROOT)
+    message(FATAL_ERROR "Set LLVM_MINGW_ROOT to the extracted llvm-mingw UCRT toolchain")
+endif()
+set(CMAKE_C_COMPILER "${LLVM_MINGW_ROOT}/bin/aarch64-w64-mingw32-clang")
+set(CMAKE_CXX_COMPILER "${LLVM_MINGW_ROOT}/bin/aarch64-w64-mingw32-clang++")
+set(CMAKE_RC_COMPILER "${LLVM_MINGW_ROOT}/bin/aarch64-w64-mingw32-windres")
+set(CMAKE_FIND_ROOT_PATH "${LLVM_MINGW_ROOT}/aarch64-w64-mingw32")
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+set(CMAKE_TRY_COMPILE_PLATFORM_VARIABLES LLVM_MINGW_ROOT)

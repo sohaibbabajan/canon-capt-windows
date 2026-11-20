@@ -1,0 +1,22 @@
+Canon CAPT USB print test 0.2 for Windows 11 ARM64
+
+1. On the Surface, extract the entire ZIP to one folder.
+2. Connect the Canon LBP6000 or LBP6000B directly by USB. Turn it on and load
+   A4 plain paper. Close the connection diagnostic and clear any pending
+   Windows print jobs for the Canon.
+3. Double-click CAPT-USB-Print-Test.exe and click Yes to send one test sheet.
+   Keep pdfium.dll and Test-page.pdf beside the executable. The unsigned test
+   runs as a normal desktop app and changes no driver or queue settings.
+4. Wait for the report dialog, up to five minutes. Use Ctrl+C while the
+   report dialog is active to copy it. Review device paths and instance IDs
+   for serial numbers before sharing.
+
+If a sheet prints, check the four corner marks and both black bars. Measure
+the 100 mm line if possible. Record any blank, clipped or shifted output.
+
+If the report shows an error or the job stops, record the full message and
+what happened at the printer (feed, LEDs, paper and output). Check whether a
+sheet came out before attempting another job. The app does not replay jobs.
+
+This build tests the direct USB print path with one A4 portrait sheet. Printing
+from ordinary applications still requires a Windows queue implementation.
